@@ -6,19 +6,27 @@ import io.github.nothtaro.sokoban.TexturePreloader
 import io.github.nothtaro.sokoban.TileType
 
 class StageRenderer {
-    var batch: SpriteBatch = SpriteBatch()
+    private lateinit var batch: SpriteBatch
 
-    var leftIndent = 0.0
-    var topIndent = 0.0
+    private var leftIndent = 0.0
+    private var topIndent = 0.0
 
-    var gridSize = 64
-    var worldGridSize = 8
-    var worldSize = gridSize * worldGridSize
+    private var gridSize = 32
+    private var worldGridSize = 8
+    private var worldSize = gridSize * worldGridSize
 
     //Test Room
-    var a = arrayOf(intArrayOf(1,1,1,1), intArrayOf(1,0,0,1), intArrayOf(1,0,0,1), intArrayOf(1,1,1,1))
+    var a = arrayOf(intArrayOf(0,0,0,0,0,0,0,0),
+                    intArrayOf(0,1,1,1,1,1,1,0),
+                    intArrayOf(0,1,1,1,1,1,1,0),
+                    intArrayOf(0,1,1,1,1,1,1,0),
+                    intArrayOf(0,1,1,1,1,1,1,0),
+                    intArrayOf(0,1,1,1,1,1,1,0),
+                    intArrayOf(0,1,1,1,1,1,1,0),
+                    intArrayOf(0,0,0,0,0,0,0,0))
 
     fun initialize() {
+        batch = SpriteBatch()
         leftIndent = ((Gdx.graphics.width - worldSize) / 2).toDouble()
         topIndent = ((Gdx.graphics.height - worldSize) / 2).toDouble()
     }
@@ -27,10 +35,12 @@ class StageRenderer {
         batch.begin()
         for (x in 0 until worldGridSize) {
             for (y in 0 until worldGridSize) {
-                batch.draw(TexturePreloader.loadTile(TileType.WALL), (leftIndent + (gridSize) * x).toFloat(), (topIndent + (gridSize) * y).toFloat(), 64f, 64f)
+                batch.draw(TexturePreloader.loadTile(TileType.getFromId(a[x][y])!!), (leftIndent + (gridSize * x)).toFloat(), (topIndent + gridSize * (worldGridSize - y)).toFloat(), 32f, 32f)
             }
         }
         batch.end()
+
+        println(Gdx.input.x)
     }
 
     fun dispose() {
