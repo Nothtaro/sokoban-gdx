@@ -1,6 +1,4 @@
-package io.github.nothtaro.sokoban
-
-import com.badlogic.gdx.graphics.g2d.TextureRegion
+package io.github.nothtaro.sokoban.stage.tile
 
 enum class TileType(val id:Int) {
     WALL(0),

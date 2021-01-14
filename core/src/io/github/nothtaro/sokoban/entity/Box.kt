@@ -2,7 +2,7 @@ package io.github.nothtaro.sokoban.entity
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.TexturePreloader
-import io.github.nothtaro.sokoban.TileType
+import io.github.nothtaro.sokoban.stage.tile.TileType
 import io.github.nothtaro.sokoban.util.Point
 
 class Box(private var x:Int, private var y:Int) : Entity {

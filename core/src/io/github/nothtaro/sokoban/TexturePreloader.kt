@@ -3,6 +3,7 @@ package io.github.nothtaro.sokoban
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import io.github.nothtaro.sokoban.stage.tile.TileType
 
 object TexturePreloader {
     lateinit var atlas:TextureAtlas

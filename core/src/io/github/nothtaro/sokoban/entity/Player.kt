@@ -3,8 +3,6 @@ package io.github.nothtaro.sokoban.entity
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import io.github.nothtaro.sokoban.TexturePreloader
-import io.github.nothtaro.sokoban.TileType
 import io.github.nothtaro.sokoban.util.Point
 
 class Player(private var x:Int, private var y:Int) : Entity {

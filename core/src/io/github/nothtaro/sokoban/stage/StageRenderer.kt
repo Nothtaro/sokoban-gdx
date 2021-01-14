@@ -3,7 +3,7 @@ package io.github.nothtaro.sokoban.stage
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.TexturePreloader
-import io.github.nothtaro.sokoban.TileType
+import io.github.nothtaro.sokoban.stage.tile.TileType
 
 class StageRenderer {
     private lateinit var batch: SpriteBatch
@@ -16,7 +16,7 @@ class StageRenderer {
     private var worldSize = gridSize * worldGridSize
 
     //Test Room
-    var a = arrayOf(intArrayOf(0,0,0,0,0,0,0,0),
+    private var a = arrayOf(intArrayOf(0,0,0,0,0,0,0,0),
                     intArrayOf(0,1,1,1,1,1,1,0),
                     intArrayOf(0,1,1,1,1,1,1,0),
                     intArrayOf(0,1,1,1,1,1,1,0),
