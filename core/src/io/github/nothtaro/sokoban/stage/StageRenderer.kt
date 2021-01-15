@@ -7,7 +7,7 @@ import io.github.nothtaro.sokoban.stage.tile.TileType
 
 class StageRenderer {
     private lateinit var stageLoader: StageLoader
-    private lateinit var stage: Stage
+    lateinit var stage: Stage
 
     fun initialize() {
         stageLoader = StageLoader()

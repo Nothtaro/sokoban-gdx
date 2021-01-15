@@ -2,7 +2,8 @@ package io.github.nothtaro.sokoban.entity
 
 enum class EntityType(val id:Int) {
     PLAYER(0),
-    BOX(1);
+    BOX(1),
+    WALL(2);
 
     companion object {
         fun getFromId(id:Int): EntityType? {

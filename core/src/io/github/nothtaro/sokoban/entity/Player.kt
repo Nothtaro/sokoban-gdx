@@ -25,7 +25,7 @@ class Player(private var x:Int, private var y:Int) : Entity {
 
     override fun render() {
         batch.begin()
-        batch.draw(playerTexture,x.toFloat(),y.toFloat(),32f,32f)
+        batch.draw(playerTexture,(32 * x).toFloat(),(32 * y).toFloat(),32f,32f)
         batch.end()
     }
 

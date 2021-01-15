@@ -11,11 +11,28 @@ import io.github.nothtaro.sokoban.stage.tile.Tile
 class Stage {
     private val tiles = arrayListOf<Tile>()
     private val spriteBatch = SpriteBatch()
-    private val entityManager = EntityManager()
+    val entityManager = EntityManager()
+
+    init {
+        entityManager.initialize()
+    }
 
     fun addTile(tile: Tile) {
         this.tiles.add(tile)
     }
+
+    fun addEntity(entity: Entity) {
+        entityManager.addEntity(entity)
+    }
+
+    /*fun getEntity(type: EntityType): Entity? {
+        entityManager.entities.forEach {
+            if(it.getEntityType() == type) {
+                return it
+            }
+        }
+        return null
+    }*/
 
     fun render() {
         spriteBatch.begin()
