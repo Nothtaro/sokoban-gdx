@@ -1,4 +1,4 @@
-package io.github.nothtaro.sokoban
+package io.github.nothtaro.sokoban.state
 
 enum class GameState(val id:Int) {
     MAIN(0),

@@ -1,12 +1,10 @@
 package io.github.nothtaro.sokoban.stage
 
 import com.badlogic.gdx.graphics.OrthographicCamera
-import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import io.github.nothtaro.sokoban.TexturePreloader
+import io.github.nothtaro.sokoban.util.TexturePreloader
 import io.github.nothtaro.sokoban.entity.Entity
 import io.github.nothtaro.sokoban.entity.EntityManager
-import io.github.nothtaro.sokoban.entity.EntityType
 import io.github.nothtaro.sokoban.stage.tile.Tile
 
 class Stage {

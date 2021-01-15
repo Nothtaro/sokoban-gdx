@@ -16,7 +16,7 @@ class FontRenderer {
     }
 
     fun render(string: String,point: Point) {
-        spriteBatch.color = Color.GRAY
+        spriteBatch.color = Color.CORAL
         spriteBatch.begin()
         for(num in string.indices) {
             spriteBatch.draw(fontAtlas.findRegion(string[num].toString().toLowerCase()),(point.x) + (24f * num),point.y.toFloat(),16f,24f)
