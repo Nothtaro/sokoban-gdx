@@ -8,6 +8,8 @@ interface Entity {
 
     fun getPosition() : Point
 
+    fun getEntityType() : EntityType
+
     fun setPosition(x: Int, y: Int)
 
     fun render()

@@ -11,14 +11,16 @@ class Player(private var x:Int, private var y:Int) : Entity {
 
     override fun getPosition() = Point(x, y)
 
+    override fun getEntityType() : EntityType {
+        return EntityType.PLAYER
+    }
+
     override fun setPosition(x: Int, y: Int) {
-        this.x = x
-        this.y = y
+        this.x = x; this.y = y
     }
 
     override fun translate(x: Int, y: Int) {
-        this.x += x
-        this.y += y
+        this.x += x; this.y += y
     }
 
     override fun render() {

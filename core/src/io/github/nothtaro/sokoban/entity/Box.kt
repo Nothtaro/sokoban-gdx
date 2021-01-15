@@ -10,6 +10,10 @@ class Box(private var x:Int, private var y:Int) : Entity {
 
     override fun getPosition() = Point(x, y)
 
+    override fun getEntityType() : EntityType {
+        return EntityType.BOX
+    }
+
     override fun setPosition(x: Int, y: Int) {
         this.x = x
         this.y = y
