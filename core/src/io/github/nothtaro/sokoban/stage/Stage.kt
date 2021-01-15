@@ -1,5 +1,6 @@
 package io.github.nothtaro.sokoban.stage
 
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.TexturePreloader
@@ -34,7 +35,8 @@ class Stage {
         return null
     }*/
 
-    fun render() {
+    fun render(camera: OrthographicCamera) {
+        spriteBatch.projectionMatrix = camera.combined
         spriteBatch.begin()
         tiles.forEach {
             spriteBatch.draw(TexturePreloader.loadTile(it.tileType),
@@ -42,8 +44,8 @@ class Stage {
                     it.position.y.toFloat(),
                     32f,32f)
         }
+        entityManager.render(spriteBatch)
         spriteBatch.end()
-        entityManager.render()
     }
 
     fun dispose() {

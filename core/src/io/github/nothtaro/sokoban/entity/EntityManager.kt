@@ -1,5 +1,8 @@
 package io.github.nothtaro.sokoban.entity
 
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.OrthographicCamera
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.Point
 
 class EntityManager {
@@ -13,9 +16,10 @@ class EntityManager {
         entities.add(entity)
     }
 
-    fun render() {
+    fun render(batch: SpriteBatch) {
         entities.forEach {
-            it.render()
+            it.render(batch)
+            it.update(Gdx.graphics.deltaTime)
         }
     }
 

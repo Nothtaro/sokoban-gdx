@@ -1,5 +1,6 @@
 package io.github.nothtaro.sokoban.entity
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.Point
 
 
@@ -12,7 +13,9 @@ interface Entity {
 
     fun setPosition(x: Int, y: Int)
 
-    fun render()
+    fun render(batch: SpriteBatch)
+
+    fun update(delta: Float)
 
     fun dispose()
 }

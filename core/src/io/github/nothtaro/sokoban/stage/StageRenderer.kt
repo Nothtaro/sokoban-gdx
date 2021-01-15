@@ -1,6 +1,7 @@
 package io.github.nothtaro.sokoban.stage
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.TexturePreloader
 import io.github.nothtaro.sokoban.stage.tile.TileType
@@ -14,8 +15,8 @@ class StageRenderer {
         stage = stageLoader.load()
     }
 
-    fun render() {
-        stage.render()
+    fun render(camera: OrthographicCamera) {
+        stage.render(camera)
     }
 
     fun dispose() {

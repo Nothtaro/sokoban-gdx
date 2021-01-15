@@ -6,8 +6,6 @@ import io.github.nothtaro.sokoban.stage.tile.TileType
 import io.github.nothtaro.sokoban.util.Point
 
 class Box(private var x:Int, private var y:Int) : Entity {
-    private var batch: SpriteBatch = SpriteBatch()
-
     override fun getPosition() = Point(x, y)
 
     override fun getEntityType() : EntityType {
@@ -24,13 +22,13 @@ class Box(private var x:Int, private var y:Int) : Entity {
         this.y += y
     }
 
-    override fun render() {
-        batch.begin()
+    override fun render(batch: SpriteBatch) {
         batch.draw(TexturePreloader.loadTile(TileType.BOX),(32 * x).toFloat(),(32 * y).toFloat(),32f,32f)
-        batch.end()
+    }
+
+    override fun update(delta: Float) {
     }
 
     override fun dispose() {
-        batch.dispose()
     }
 }
