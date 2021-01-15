@@ -26,15 +26,6 @@ class Stage {
         entityManager.addEntity(entity)
     }
 
-    /*fun getEntity(type: EntityType): Entity? {
-        entityManager.entities.forEach {
-            if(it.getEntityType() == type) {
-                return it
-            }
-        }
-        return null
-    }*/
-
     fun render(camera: OrthographicCamera) {
         spriteBatch.projectionMatrix = camera.combined
         spriteBatch.begin()

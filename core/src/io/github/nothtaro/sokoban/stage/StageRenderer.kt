@@ -1,10 +1,6 @@
 package io.github.nothtaro.sokoban.stage
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.OrthographicCamera
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import io.github.nothtaro.sokoban.TexturePreloader
-import io.github.nothtaro.sokoban.stage.tile.TileType
 
 class StageRenderer {
     private lateinit var stageLoader: StageLoader

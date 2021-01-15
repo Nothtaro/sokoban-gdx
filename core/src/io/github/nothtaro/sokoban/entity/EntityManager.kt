@@ -1,12 +1,11 @@
 package io.github.nothtaro.sokoban.entity
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.Point
 
 class EntityManager {
-    var entities = arrayListOf<Entity>()
+    private var entities = arrayListOf<Entity>()
 
     fun initialize() {
 
@@ -49,7 +48,7 @@ class EntityManager {
         }
     }
 
-    fun isIntersectsWall(position:Point) : Boolean {
+    private fun isIntersectsWall(position:Point) : Boolean {
         entities.forEach { e ->
             if(e.getEntityType() == EntityType.WALL && e.getPosition() == position) {
                 //e.translate(position.x, position.y)

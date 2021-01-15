@@ -3,15 +3,22 @@ package io.github.nothtaro.sokoban.entity
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.Point
 
-
 interface Entity {
-    fun translate(x:Int, y:Int)
+    var x: Int; var y: Int
 
-    fun getPosition() : Point
+    fun translate(x:Int, y:Int) {
+        this.x += x; this.y += y
+    }
+
+    fun getPosition() : Point {
+        return Point(this.x,this.y)
+    }
 
     fun getEntityType() : EntityType
 
-    fun setPosition(x: Int, y: Int)
+    fun setPosition(x: Int, y: Int) {
+        this.x = x; this.y = y
+    }
 
     fun render(batch: SpriteBatch)
 
