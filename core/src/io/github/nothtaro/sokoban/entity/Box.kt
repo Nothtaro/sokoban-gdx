@@ -6,7 +6,7 @@ import io.github.nothtaro.sokoban.stage.tile.TileType
 
 class Box(override var x:Int, override var y:Int) : Entity {
     private var tempX:Float = 0.0f; var tempY:Float = 0.0f
-    private var easeX:Float = 0.0f; var easeY:Float = 0.0f
+    private var easeX:Float = (32 * x).toFloat(); var easeY:Float = (32 * y).toFloat()
 
     override fun getEntityType() : EntityType {
         return EntityType.BOX

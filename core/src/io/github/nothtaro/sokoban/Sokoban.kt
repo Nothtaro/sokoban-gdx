@@ -5,20 +5,16 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import io.github.nothtaro.sokoban.entity.Box
-import io.github.nothtaro.sokoban.entity.Entity
 import io.github.nothtaro.sokoban.entity.EntityType
 import io.github.nothtaro.sokoban.stage.StageRenderer
-import io.github.nothtaro.sokoban.stage.tile.TileType
 import io.github.nothtaro.sokoban.state.GameState
+import io.github.nothtaro.sokoban.ui.FontRenderer
 import io.github.nothtaro.sokoban.util.Point
 import io.github.nothtaro.sokoban.util.TexturePreloader
-import kotlin.math.pow
 
 class Sokoban : ApplicationAdapter() {
     private var stageRenderer = StageRenderer()
-    //private var fontRenderer = FontRenderer()
+    private var fontRenderer = FontRenderer()
     private lateinit var camera: OrthographicCamera
     private var gameState = GameState.MAIN
     private var steps = 0
@@ -29,7 +25,7 @@ class Sokoban : ApplicationAdapter() {
         camera.setToOrtho(false)
         camera.translate(-128f,-128f)
         stageRenderer.initialize()
-        //fontRenderer.initialize()
+        fontRenderer.initialize()
     }
 
     override fun render() {
@@ -38,17 +34,17 @@ class Sokoban : ApplicationAdapter() {
         camera.update()
 
         if(gameState == GameState.MAIN) {
-            //fontRenderer.render("SOKOBAN", Point(0,0))
+            fontRenderer.render("SOKOBAN", Point(0,0))
             if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
                 gameState = GameState.GAME
             }
         }
 
         if(gameState == GameState.GAME) {
-            //fontRenderer.render("0-0", Point(0,0))
-            //fontRenderer.render("LEVEL", Point(0,30))
-            //fontRenderer.render(steps.toString(), Point(0,60))
-            //fontRenderer.render("STEPS", Point(0,90))
+            fontRenderer.render("0-0", Point(0,0))
+            fontRenderer.render("LEVEL", Point(0,30))
+            fontRenderer.render(steps.toString(), Point(0,60))
+            fontRenderer.render("STEPS", Point(0,90))
             stageRenderer.render(camera)
 
             when {
@@ -75,7 +71,7 @@ class Sokoban : ApplicationAdapter() {
     override fun dispose() {
         TexturePreloader.dispose()
         stageRenderer.dispose()
-        //fontRenderer.dispose()
+        fontRenderer.dispose()
     }
 }
 

@@ -8,7 +8,7 @@ import io.github.nothtaro.sokoban.util.Point
 class Player(override var x:Int, override var y:Int) : Entity {
     private var playerTexture = Texture(Gdx.files.internal("player.png"))
     private var tempX:Float = 0.0f; var tempY:Float = 0.0f
-    private var easeX:Float = 0.0f; var easeY:Float = 0.0f
+    private var easeX:Float = (32 * x).toFloat(); var easeY:Float = (32 * y).toFloat()
 
 
     override fun getEntityType() : EntityType {
@@ -28,8 +28,8 @@ class Player(override var x:Int, override var y:Int) : Entity {
     }
 
     override fun update(delta:Float) {
-        easeX += (0.15 * ((32 * x) - easeX)).toFloat()
-        easeY += (0.15 * ((32 * y) - easeY)).toFloat()
+        easeX += (0.30 * ((32 * x) - easeX)).toFloat()
+        easeY += (0.30 * ((32 * y) - easeY)).toFloat()
     }
 
     override fun dispose() {

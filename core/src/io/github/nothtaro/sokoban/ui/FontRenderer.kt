@@ -19,7 +19,7 @@ class FontRenderer {
         spriteBatch.color = Color.CORAL
         spriteBatch.begin()
         for(num in string.indices) {
-            spriteBatch.draw(fontAtlas.findRegion(string[num].toString().toLowerCase()),(point.x) + (24f * num),point.y.toFloat(),16f,24f)
+            spriteBatch.draw(fontAtlas.findRegion(string[num].toString().toLowerCase()),(point.x) + (24f * num),point.y.toFloat(),8f,12f)
         }
         spriteBatch.end()
     }
