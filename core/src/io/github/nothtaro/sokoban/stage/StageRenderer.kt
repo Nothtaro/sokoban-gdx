@@ -8,7 +8,8 @@ class StageRenderer {
 
     fun initialize() {
         stageLoader = StageLoader()
-        stage = stageLoader.load()
+        stageLoader.initialize()
+        stage = stageLoader.load("0")
     }
 
     fun render(camera: OrthographicCamera) {

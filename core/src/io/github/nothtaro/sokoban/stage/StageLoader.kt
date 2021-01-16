@@ -1,42 +1,51 @@
 package io.github.nothtaro.sokoban.stage
 
+import com.badlogic.gdx.Gdx
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.github.nothtaro.sokoban.entity.Box
 import io.github.nothtaro.sokoban.entity.Player
 import io.github.nothtaro.sokoban.entity.Wall
+import io.github.nothtaro.sokoban.json.StageEntity
+import io.github.nothtaro.sokoban.json.StagesEntity
 import io.github.nothtaro.sokoban.stage.tile.Tile
 import io.github.nothtaro.sokoban.stage.tile.TileType
 import io.github.nothtaro.sokoban.util.Point
 
 class StageLoader {
+    private var jsonMapper = jacksonObjectMapper()
     private val tileCount = 8
     private val tileSize = 64
     //Test room for develop to be implemented
-    private var a = arrayOf(intArrayOf(0,0,0,0,0,0,0,0),
-                            intArrayOf(0,1,1,1,1,1,1,0),
-                            intArrayOf(0,1,3,3,3,3,1,0),
-                            intArrayOf(0,1,3,0,0,3,1,0),
-                            intArrayOf(0,1,3,0,0,3,1,0),
-                            intArrayOf(0,1,3,3,3,3,1,0),
-                            intArrayOf(0,1,1,1,1,1,2,0),
-                            intArrayOf(0,0,0,0,0,0,0,0))
+    private lateinit var stages: Array<StageEntity>
 
-    fun load(): Stage {
-        val temp = Stage()
+    fun initialize() {
+        println(Gdx.files.internal("levels/levels.json").reader().read())
+        stages = jsonMapper.readValue<StagesEntity>(Gdx.files.internal("levels/levels.json").reader()).stages
+    }
+
+    fun load(level: String): Stage {
+        val temp = Stage(level)
         println("Loading")
-        for (x in 0 until tileCount) {
-            for (y in 0 until tileCount) {
-                when {
-                    a[x][y] == 0 -> {
-                        temp.addEntity(Wall(x,y))
-                    }
-                    a[x][y] == 2 -> {
-                        temp.addEntity(Player(x,y))
-                    }
-                    a[x][y] == 3 -> {
-                        temp.addEntity(Box(x,y))
+
+        stages.forEach {
+            if(it.level.equals(temp.getStageLevel())) {
+                for (x in 0 until tileCount) {
+                    for (y in 0 until tileCount) {
+                        when {
+                            it.field[y][x] == 0 -> {
+                                temp.addEntity(Wall(x,y,tileSize))
+                            }
+                            it.field[y][x] == 2 -> {
+                                temp.addEntity(Player(x,y,tileSize))
+                            }
+                            it.field[y][x] == 3 -> {
+                                temp.addEntity(Box(x,y,tileSize))
+                            }
+                        }
+                        temp.addTile(Tile(TileType.getFromId(1)!!, Point((tileSize * x),(tileSize * y))))
                     }
                 }
-                temp.addTile(Tile(TileType.getFromId(1)!!, Point((tileSize * x),(tileSize * y))))
             }
         }
         print("Stage loaded")

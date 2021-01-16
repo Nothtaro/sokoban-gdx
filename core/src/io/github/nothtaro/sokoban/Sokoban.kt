@@ -31,7 +31,7 @@ class Sokoban : ApplicationAdapter() {
 
     override fun render() {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
-        Gdx.gl.glClearColor(0.15f,0.15f,0.15f,1f)
+        Gdx.gl.glClearColor(0.10f,0.10f,0.10f,1f)
         camera.update()
 
         if(gameState == GameState.MAIN) {
@@ -46,6 +46,7 @@ class Sokoban : ApplicationAdapter() {
             fontRenderer.render("LEVEL", Point(0,20))
             fontRenderer.render(steps.toString(), Point(0,40))
             fontRenderer.render("STEPS", Point(0,60))
+            fontRenderer.render(Gdx.graphics.framesPerSecond.toString(), Point(0,80))
             stageRenderer.render(camera)
 
             when {

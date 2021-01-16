@@ -7,13 +7,17 @@ import io.github.nothtaro.sokoban.entity.Entity
 import io.github.nothtaro.sokoban.entity.EntityManager
 import io.github.nothtaro.sokoban.stage.tile.Tile
 
-class Stage {
+class Stage(private val stageLevel:String) {
     private val tiles = arrayListOf<Tile>()
     private val spriteBatch = SpriteBatch()
     val entityManager = EntityManager()
 
     init {
         entityManager.initialize()
+    }
+
+    fun getStageLevel(): String {
+        return this.stageLevel
     }
 
     fun addTile(tile: Tile) {

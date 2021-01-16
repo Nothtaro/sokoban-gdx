@@ -5,6 +5,7 @@ import io.github.nothtaro.sokoban.util.Point
 
 interface Entity {
     var x: Int; var y: Int
+    var textureSize: Int
 
     fun translate(x:Int, y:Int) {
         this.x += x; this.y += y

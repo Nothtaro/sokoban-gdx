@@ -4,13 +4,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.TexturePreloader
 import io.github.nothtaro.sokoban.stage.tile.TileType
 
-class Wall(override var x:Int, override var y:Int) : Entity {
+class Wall(override var x:Int, override var y:Int, override var textureSize: Int) : Entity {
     override fun getEntityType() : EntityType {
         return EntityType.WALL
     }
 
     override fun render(batch: SpriteBatch) {
-        batch.draw(TexturePreloader.loadTile(TileType.WALL),(64 * x).toFloat(),(64 * y).toFloat(),64f,64f)
+        batch.draw(TexturePreloader.loadTile(TileType.WALL),(textureSize * x).toFloat(),(textureSize * y).toFloat(),textureSize.toFloat(),textureSize.toFloat())
     }
 
     override fun update(delta:Float) { }

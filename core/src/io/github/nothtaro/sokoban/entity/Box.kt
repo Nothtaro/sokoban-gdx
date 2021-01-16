@@ -4,24 +4,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.TexturePreloader
 import io.github.nothtaro.sokoban.stage.tile.TileType
 
-class Box(override var x:Int, override var y:Int) : Entity {
-    private var tempX:Float = 0.0f; var tempY:Float = 0.0f
-    private var easeX:Float = (64 * x).toFloat(); var easeY:Float = (64 * y).toFloat()
+class Box(override var x:Int, override var y:Int, override var textureSize: Int) : Entity {
+    private var easeX:Float = (textureSize * x).toFloat(); private var easeY:Float = (textureSize * y).toFloat()
 
     override fun getEntityType() : EntityType {
         return EntityType.BOX
     }
 
     override fun render(batch: SpriteBatch) {
-        batch.draw(TexturePreloader.loadTile(TileType.BOX),easeX,easeY,64f,64f)
-    }
-
-    override fun translate(x: Int, y: Int) {
-        this.x += x
-        this.y += y
-
-        tempX = (64 * x).toFloat()
-        tempY = (64 * y).toFloat()
+        batch.draw(TexturePreloader.loadTile(TileType.BOX),easeX,easeY,textureSize.toFloat(),textureSize.toFloat())
     }
 
     override fun update(delta:Float) {
