@@ -16,11 +16,10 @@ class StageLoader {
     private var jsonMapper = jacksonObjectMapper()
     private val tileCount = 8
     private val tileSize = 64
-    //Test room for develop to be implemented
+
     private lateinit var stages: Array<StageEntity>
 
     fun initialize() {
-        println(Gdx.files.internal("levels/levels.json").reader().read())
         stages = jsonMapper.readValue<StagesEntity>(Gdx.files.internal("levels/levels.json").reader()).stages
     }
 
@@ -29,7 +28,7 @@ class StageLoader {
         println("Loading")
 
         stages.forEach {
-            if(it.level.equals(temp.getStageLevel())) {
+            if(it.level == temp.getStageLevel()) {
                 for (x in 0 until tileCount) {
                     for (y in 0 until tileCount) {
                         when {

@@ -3,6 +3,7 @@ package io.github.nothtaro.sokoban.entity
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.TexturePreloader
 import io.github.nothtaro.sokoban.stage.tile.TileType
+import io.github.nothtaro.sokoban.util.Point
 
 class Box(override var x:Int, override var y:Int, override var textureSize: Int) : Entity {
     private var easeX:Float = (textureSize * x).toFloat(); private var easeY:Float = (textureSize * y).toFloat()
