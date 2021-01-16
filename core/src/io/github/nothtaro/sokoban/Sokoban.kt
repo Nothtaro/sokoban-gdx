@@ -17,13 +17,14 @@ class Sokoban : ApplicationAdapter() {
     private var fontRenderer = FontRenderer()
     private lateinit var camera: OrthographicCamera
     private var gameState = GameState.MAIN
+    private var ab = 64 * 8
     private var steps = 0
 
     override fun create() {
         TexturePreloader.initalize()
-        camera = OrthographicCamera(512f,512f)
+        camera = OrthographicCamera()
         camera.setToOrtho(false)
-        camera.translate(-128f,-128f)
+        camera.translate(-((Gdx.graphics.width - ab) / 2).toFloat(),-((Gdx.graphics.height - ab) / 2).toFloat())
         stageRenderer.initialize()
         fontRenderer.initialize()
     }
@@ -42,9 +43,9 @@ class Sokoban : ApplicationAdapter() {
 
         if(gameState == GameState.GAME) {
             fontRenderer.render("0-0", Point(0,0))
-            fontRenderer.render("LEVEL", Point(0,30))
-            fontRenderer.render(steps.toString(), Point(0,60))
-            fontRenderer.render("STEPS", Point(0,90))
+            fontRenderer.render("LEVEL", Point(0,20))
+            fontRenderer.render(steps.toString(), Point(0,40))
+            fontRenderer.render("STEPS", Point(0,60))
             stageRenderer.render(camera)
 
             when {

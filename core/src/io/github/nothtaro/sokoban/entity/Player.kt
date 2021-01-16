@@ -8,7 +8,7 @@ import io.github.nothtaro.sokoban.util.Point
 class Player(override var x:Int, override var y:Int) : Entity {
     private var playerTexture = Texture(Gdx.files.internal("player.png"))
     private var tempX:Float = 0.0f; var tempY:Float = 0.0f
-    private var easeX:Float = (32 * x).toFloat(); var easeY:Float = (32 * y).toFloat()
+    private var easeX:Float = (64 * x).toFloat(); var easeY:Float = (64 * y).toFloat()
 
 
     override fun getEntityType() : EntityType {
@@ -16,20 +16,20 @@ class Player(override var x:Int, override var y:Int) : Entity {
     }
 
     override fun render(batch: SpriteBatch) {
-        batch.draw(playerTexture,easeX,easeY,32.toFloat(),32.toFloat())
+        batch.draw(playerTexture,easeX,easeY,64.toFloat(),64.toFloat())
     }
 
     override fun translate(x: Int, y: Int) {
         this.x += x
         this.y += y
 
-        tempX = (32 * x).toFloat()
-        tempY = (32 * y).toFloat()
+        tempX = (64 * x).toFloat()
+        tempY = (64 * y).toFloat()
     }
 
     override fun update(delta:Float) {
-        easeX += (0.30 * ((32 * x) - easeX)).toFloat()
-        easeY += (0.30 * ((32 * y) - easeY)).toFloat()
+        easeX += (0.30 * ((64 * x) - easeX)).toFloat()
+        easeY += (0.30 * ((64 * y) - easeY)).toFloat()
     }
 
     override fun dispose() {

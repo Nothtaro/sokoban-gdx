@@ -16,10 +16,10 @@ class FontRenderer {
     }
 
     fun render(string: String,point: Point) {
-        spriteBatch.color = Color.CORAL
+        spriteBatch.color = Color.WHITE
         spriteBatch.begin()
         for(num in string.indices) {
-            spriteBatch.draw(fontAtlas.findRegion(string[num].toString().toLowerCase()),(point.x) + (24f * num),point.y.toFloat(),8f,12f)
+            spriteBatch.draw(fontAtlas.findRegion(string[num].toString().toLowerCase()),(point.x) + (12f * num),point.y.toFloat(),8f,12f)
         }
         spriteBatch.end()
     }

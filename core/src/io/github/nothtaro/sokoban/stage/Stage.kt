@@ -31,7 +31,7 @@ class Stage {
             spriteBatch.draw(TexturePreloader.loadTile(it.tileType),
                     it.position.x.toFloat(),
                     it.position.y.toFloat(),
-                    32f,32f)
+                    64f,64f)
         }
         entityManager.render(spriteBatch)
         spriteBatch.end()

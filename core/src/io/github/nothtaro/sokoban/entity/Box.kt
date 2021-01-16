@@ -6,27 +6,27 @@ import io.github.nothtaro.sokoban.stage.tile.TileType
 
 class Box(override var x:Int, override var y:Int) : Entity {
     private var tempX:Float = 0.0f; var tempY:Float = 0.0f
-    private var easeX:Float = (32 * x).toFloat(); var easeY:Float = (32 * y).toFloat()
+    private var easeX:Float = (64 * x).toFloat(); var easeY:Float = (64 * y).toFloat()
 
     override fun getEntityType() : EntityType {
         return EntityType.BOX
     }
 
     override fun render(batch: SpriteBatch) {
-        batch.draw(TexturePreloader.loadTile(TileType.BOX),easeX,easeY,32f,32f)
+        batch.draw(TexturePreloader.loadTile(TileType.BOX),easeX,easeY,64f,64f)
     }
 
     override fun translate(x: Int, y: Int) {
         this.x += x
         this.y += y
 
-        tempX = (32 * x).toFloat()
-        tempY = (32 * y).toFloat()
+        tempX = (64 * x).toFloat()
+        tempY = (64 * y).toFloat()
     }
 
     override fun update(delta:Float) {
-        easeX += (0.25 * ((32 * x) - easeX)).toFloat()
-        easeY += (0.25 * ((32 * y) - easeY)).toFloat()
+        easeX += (0.25 * ((64 * x) - easeX)).toFloat()
+        easeY += (0.25 * ((64 * y) - easeY)).toFloat()
     }
 
     override fun dispose() { }

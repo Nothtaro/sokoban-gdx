@@ -9,7 +9,7 @@ import io.github.nothtaro.sokoban.util.Point
 
 class StageLoader {
     private val tileCount = 8
-    private val tileSize = 32
+    private val tileSize = 64
     //Test room for develop to be implemented
     private var a = arrayOf(intArrayOf(0,0,0,0,0,0,0,0),
                             intArrayOf(0,1,1,1,1,1,1,0),

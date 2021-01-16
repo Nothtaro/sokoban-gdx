@@ -10,7 +10,7 @@ class Wall(override var x:Int, override var y:Int) : Entity {
     }
 
     override fun render(batch: SpriteBatch) {
-        batch.draw(TexturePreloader.loadTile(TileType.WALL),(32 * x).toFloat(),(32 * y).toFloat(),32f,32f)
+        batch.draw(TexturePreloader.loadTile(TileType.WALL),(64 * x).toFloat(),(64 * y).toFloat(),64f,64f)
     }
 
     override fun update(delta:Float) { }
