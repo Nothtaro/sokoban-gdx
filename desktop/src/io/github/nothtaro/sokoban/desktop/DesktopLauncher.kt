@@ -6,6 +6,6 @@ import io.github.nothtaro.sokoban.Sokoban
 
 fun main(args:Array<String>) {
     val config = LwjglApplicationConfiguration()
-    config.width = 1024; config.height = 1024
+    config.width = 800; config.height = 800
     LwjglApplication(Sokoban(), config)
 }

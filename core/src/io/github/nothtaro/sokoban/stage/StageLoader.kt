@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.github.nothtaro.sokoban.entity.Box
+import io.github.nothtaro.sokoban.entity.EntityType
 import io.github.nothtaro.sokoban.entity.Player
 import io.github.nothtaro.sokoban.entity.Wall
 import io.github.nothtaro.sokoban.json.StageEntity
@@ -18,6 +19,7 @@ class StageLoader {
     private val tileSize = 64
 
     private lateinit var stages: Array<StageEntity>
+    private var elapsed = 0L
 
     fun initialize() {
         stages = jsonMapper.readValue<StagesEntity>(Gdx.files.internal("levels/levels.json").reader()).stages
@@ -25,29 +27,21 @@ class StageLoader {
 
     fun load(level: String): Stage {
         val temp = Stage(level)
-        println("Loading")
-
+        elapsed = System.currentTimeMillis()
+        println("ロード中")
         stages.forEach {
             if(it.level == temp.getStageLevel()) {
                 for (x in 0 until tileCount) {
                     for (y in 0 until tileCount) {
-                        when {
-                            it.field[y][x] == 0 -> {
-                                temp.addEntity(Wall(x,y,tileSize))
-                            }
-                            it.field[y][x] == 2 -> {
-                                temp.addEntity(Player(x,y,tileSize))
-                            }
-                            it.field[y][x] == 3 -> {
-                                temp.addEntity(Box(x,y,tileSize))
-                            }
+                        if(it.field[y][x] < 3) {
+                            temp.entityManager.addEntity(EntityType.getFromId(it.field[y][x])!!, Point(x,y))
                         }
                         temp.addTile(Tile(TileType.getFromId(1)!!, Point((tileSize * x),(tileSize * y))))
                     }
                 }
             }
         }
-        print("Stage loaded")
+        print("ロード完了 経過時間 ${System.currentTimeMillis() - elapsed}ms")
         return temp
     }
 }

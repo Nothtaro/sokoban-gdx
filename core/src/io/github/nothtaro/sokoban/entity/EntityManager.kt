@@ -6,13 +6,14 @@ import io.github.nothtaro.sokoban.util.Point
 
 class EntityManager {
     private var entities = arrayListOf<Entity>()
+    private val textureSize = 64
 
-    fun initialize() {
-
-    }
-
-    fun addEntity(entity: Entity) {
-        entities.add(entity)
+    fun addEntity(entityType: EntityType, position:Point) {
+        when(entityType) {
+            EntityType.PLAYER -> { entities.add(Player(position,textureSize)) }
+            EntityType.BOX -> { entities.add(Box(position,textureSize)) }
+            EntityType.WALL -> { entities.add(Wall(position,textureSize)) }
+        }
     }
 
     fun render(batch: SpriteBatch) {
@@ -26,22 +27,22 @@ class EntityManager {
         entities.forEach {
             if(it.getEntityType() == type) {
                 val temp = it
-                println("Try to move to $position")
+                println("$position に移動を試みました")
                 entities.forEach { e ->
                     if(e.getEntityType() == EntityType.BOX) {
-                        println("CURR PLAYER POS ${(temp.getPosition().plus(position))}")
-                        println("BOX POS ${e.getPosition()}")
+                        //println("CURR PLAYER POS ${(temp.position.plus(position))}")
+                        //println("BOX POS ${e.position}")
 
-                        if(e.getPosition() == (temp.getPosition().plus(position))) {
-                            if(!isIntersectsWall(e.getPosition().plus(position))) {
+                        if(e.position == (temp.position.plus(position))) {
+                            if(!isIntersectsWall(e.position.plus(position))) {
                                 e.translate(position.x, position.y)
                             }
-                            println("Theres a box")
+                            println("箱がある")
                             return
                         }
                     }
                 }
-                if(!isIntersectsWall(temp.getPosition().plus(position))) {
+                if(!isIntersectsWall(temp.position.plus(position))) {
                     it.translate(position.x, position.y)
                 }
             }
@@ -50,9 +51,9 @@ class EntityManager {
 
     private fun isIntersectsWall(position:Point) : Boolean {
         entities.forEach { e ->
-            if(e.getEntityType() == EntityType.WALL && e.getPosition() == position) {
+            if(e.getEntityType() == EntityType.WALL && e.position == position) {
                 //e.translate(position.x, position.y)
-                println("WALL POS ${e.getPosition()}")
+                println("WALL POS ${e.position}")
                 println("Theres a wall")
                 return true
             }

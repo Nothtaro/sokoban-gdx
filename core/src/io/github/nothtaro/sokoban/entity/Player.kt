@@ -5,10 +5,9 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.Point
 
-class Player(override var x:Int, override var y:Int, override var textureSize: Int) : Entity {
+class Player(override var position: Point, override var textureSize: Int) : Entity {
     private var playerTexture = Texture(Gdx.files.internal("player.png"))
-    private var easeX:Float = (textureSize * x).toFloat(); private var easeY:Float = (textureSize * y).toFloat()
-
+    private var easeX:Float = (textureSize * position.x).toFloat(); private var easeY:Float = (textureSize * position.y).toFloat()
 
     override fun getEntityType() : EntityType {
         return EntityType.PLAYER
@@ -19,8 +18,8 @@ class Player(override var x:Int, override var y:Int, override var textureSize: I
     }
 
     override fun update(delta:Float) {
-        easeX += (0.30 * ((textureSize * x) - easeX)).toFloat()
-        easeY += (0.30 * ((textureSize * y) - easeY)).toFloat()
+        easeX += (0.30 * ((textureSize * position.x) - easeX)).toFloat()
+        easeY += (0.30 * ((textureSize * position.y) - easeY)).toFloat()
     }
 
     override fun dispose() {

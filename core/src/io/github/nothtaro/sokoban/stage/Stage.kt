@@ -13,7 +13,7 @@ class Stage(private val stageLevel:String) {
     val entityManager = EntityManager()
 
     init {
-        entityManager.initialize()
+        //entityManager.initialize()
     }
 
     fun getStageLevel(): String {
@@ -24,18 +24,11 @@ class Stage(private val stageLevel:String) {
         this.tiles.add(tile)
     }
 
-    fun addEntity(entity: Entity) {
-        entityManager.addEntity(entity)
-    }
-
     fun render(camera: OrthographicCamera) {
         spriteBatch.projectionMatrix = camera.combined
         spriteBatch.begin()
         tiles.forEach {
-            spriteBatch.draw(TexturePreloader.loadTile(it.tileType),
-                    it.position.x.toFloat(),
-                    it.position.y.toFloat(),
-                    64f,64f)
+            spriteBatch.draw(TexturePreloader.loadTile(it.tileType),it.position.x.toFloat(), it.position.y.toFloat(), 64f,64f)
         }
         entityManager.render(spriteBatch)
         spriteBatch.end()
