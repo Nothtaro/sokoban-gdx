@@ -1,26 +1,33 @@
 
-blockAtlas.png
-size: 64,32
+PlayerAtlas.png
+size: 128,32
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-atlas0000
+down
   rotate: false
   xy: 20, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-atlas0001
+left
+  rotate: false
+  xy: 38, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+right
   rotate: false
   xy: 2, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-atlas0002
+up
   rotate: false
-  xy: 38, 2
+  xy: 56, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
