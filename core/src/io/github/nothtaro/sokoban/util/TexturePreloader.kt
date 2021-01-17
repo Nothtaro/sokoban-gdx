@@ -6,26 +6,24 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import io.github.nothtaro.sokoban.stage.tile.TileType
 
 object TexturePreloader {
-    lateinit var atlas:TextureAtlas
+    private lateinit var atlas:TextureAtlas
 
-    fun initalize() {
+    fun initialize() {
         atlas = TextureAtlas(Gdx.files.internal("blockAtlas.atlas"))
     }
 
     fun loadTile(tileType: TileType):TextureRegion {
-        var temp:TextureRegion
-        when(tileType) {
+        return when(tileType) {
             TileType.BOX -> {
-                temp = atlas.findRegion("atlas0002")
+                atlas.findRegion("atlas0002")
             }
             TileType.WALL -> {
-                temp = atlas.findRegion("atlas0000")
+                atlas.findRegion("atlas0000")
             }
             TileType.FLOOR -> {
-                temp = atlas.findRegion("atlas0001")
+                atlas.findRegion("atlas0001")
             }
         }
-        return temp
     }
 
     fun dispose() {

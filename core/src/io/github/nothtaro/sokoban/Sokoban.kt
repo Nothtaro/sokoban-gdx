@@ -21,7 +21,7 @@ class Sokoban : ApplicationAdapter() {
     private var steps = 0
 
     override fun create() {
-        TexturePreloader.initalize()
+        TexturePreloader.initialize()
         camera = OrthographicCamera()
         camera.setToOrtho(false)
         camera.translate(-((Gdx.graphics.width - ab) / 2).toFloat(),-((Gdx.graphics.height - ab) / 2).toFloat())

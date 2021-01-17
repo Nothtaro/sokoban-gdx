@@ -3,7 +3,6 @@ package io.github.nothtaro.sokoban.stage
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.TexturePreloader
-import io.github.nothtaro.sokoban.entity.Entity
 import io.github.nothtaro.sokoban.entity.EntityManager
 import io.github.nothtaro.sokoban.stage.tile.Tile
 
@@ -11,10 +10,6 @@ class Stage(private val stageLevel:String) {
     private val tiles = arrayListOf<Tile>()
     private val spriteBatch = SpriteBatch()
     val entityManager = EntityManager()
-
-    init {
-        //entityManager.initialize()
-    }
 
     fun getStageLevel(): String {
         return this.stageLevel

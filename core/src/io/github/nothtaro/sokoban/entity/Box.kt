@@ -1,6 +1,5 @@
 package io.github.nothtaro.sokoban.entity
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.TexturePreloader
 import io.github.nothtaro.sokoban.stage.tile.TileType

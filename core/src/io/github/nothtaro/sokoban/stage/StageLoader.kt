@@ -3,10 +3,7 @@ package io.github.nothtaro.sokoban.stage
 import com.badlogic.gdx.Gdx
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import io.github.nothtaro.sokoban.entity.Box
 import io.github.nothtaro.sokoban.entity.EntityType
-import io.github.nothtaro.sokoban.entity.Player
-import io.github.nothtaro.sokoban.entity.Wall
 import io.github.nothtaro.sokoban.json.StageEntity
 import io.github.nothtaro.sokoban.json.StagesEntity
 import io.github.nothtaro.sokoban.stage.tile.Tile
