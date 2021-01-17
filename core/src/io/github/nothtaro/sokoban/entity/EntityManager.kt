@@ -7,6 +7,7 @@ import io.github.nothtaro.sokoban.util.Point
 class EntityManager {
     private var entities = arrayListOf<Entity>()
     private val textureSize = 64
+    private var collideAt: Entity? = null
 
     fun addEntity(entityType: EntityType, position:Point) {
         when(entityType) {
@@ -26,39 +27,27 @@ class EntityManager {
     fun translate(type: EntityType, position: Point) {
         entities.forEach {
             if(it.getEntityType() == type) {
-                val temp = it
-                println("$position に移動を試みました")
-                entities.forEach { e ->
-                    if(e.getEntityType() == EntityType.BOX) {
-                        //println("CURR PLAYER POS ${(temp.position.plus(position))}")
-                        //println("BOX POS ${e.position}")
-
-                        if(e.position == (temp.position.plus(position))) {
-                            if(!isIntersectsWall(e.position.plus(position))) {
-                                e.translate(position.x, position.y)
-                            }
-                            println("箱がある")
-                            return
-                        }
+                collideAt = isIntersectAt(it.position.plus(position))
+                println("$position に移動を試みました 現在 ${it.position}")
+                if(collideAt != null && collideAt!!.getEntityType() != EntityType.WALL && collideAt!!.getEntityType() == EntityType.BOX) {
+                    if(isIntersectAt(collideAt!!.position.plus(position)) == null) {
+                        collideAt!!.translate(position.x,position.y)
                     }
-                }
-                if(!isIntersectsWall(temp.position.plus(position))) {
-                    it.translate(position.x, position.y)
+                } else if (collideAt == null) {
+                    it.translate(position.x,position.y)
                 }
             }
         }
     }
 
-    private fun isIntersectsWall(position:Point) : Boolean {
-        entities.forEach { e ->
-            if(e.getEntityType() == EntityType.WALL && e.position == position) {
-                //e.translate(position.x, position.y)
-                println("WALL POS ${e.position}")
-                println("Theres a wall")
-                return true
+    private fun isIntersectAt(position:Point): Entity? {
+        entities.forEach {
+            if(it.position == position) {
+                println("${it.getEntityType()} がある")
+                return it
             }
         }
-        return false
+        return null
     }
 
     fun dispose() {
