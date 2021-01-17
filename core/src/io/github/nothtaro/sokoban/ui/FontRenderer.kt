@@ -12,7 +12,7 @@ class FontRenderer {
 
     fun initialize() {
         spriteBatch = SpriteBatch()
-        fontAtlas = TextureAtlas(Gdx.files.internal("font/lowbitfont.atlas"))
+        fontAtlas = TextureAtlas(Gdx.files.internal("sprites/font/lowbitfont.atlas"))
     }
 
     fun render(string: String,point: Point) {

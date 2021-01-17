@@ -14,6 +14,7 @@ class EntityManager {
             EntityType.PLAYER -> { entities.add(Player(position,textureSize)) }
             EntityType.BOX -> { entities.add(Box(position,textureSize)) }
             EntityType.WALL -> { entities.add(Wall(position,textureSize)) }
+            EntityType.WALLBOTTOM -> { entities.add(WallBottom(position,textureSize)) }
         }
     }
 
@@ -22,6 +23,15 @@ class EntityManager {
             it.render(batch)
             it.update(Gdx.graphics.deltaTime)
         }
+    }
+
+    fun getPlayerEntity(): Entity?{
+        entities.forEach {
+            if(it.getEntityType() == EntityType.PLAYER) {
+                return it as Player
+            }
+        }
+        return null
     }
 
     fun translate(type: EntityType, position: Point) {

@@ -2,8 +2,9 @@ package io.github.nothtaro.sokoban.stage.tile
 
 enum class TileType(val id:Int) {
     WALL(0),
-    FLOOR(1),
-    BOX(2);
+    WALLBOTTOM(1),
+    FLOOR(2),
+    BOX(3);
 
     companion object {
         fun getFromId(id:Int): TileType? {

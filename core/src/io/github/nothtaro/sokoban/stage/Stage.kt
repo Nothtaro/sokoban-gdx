@@ -6,13 +6,13 @@ import io.github.nothtaro.sokoban.util.TexturePreloader
 import io.github.nothtaro.sokoban.entity.EntityManager
 import io.github.nothtaro.sokoban.stage.tile.Tile
 
-class Stage(private val stageLevel:String) {
+class Stage(private val stageName:String) {
     private val tiles = arrayListOf<Tile>()
     private val spriteBatch = SpriteBatch()
     val entityManager = EntityManager()
 
-    fun getStageLevel(): String {
-        return this.stageLevel
+    fun getStageName(): String {
+        return this.stageName
     }
 
     fun addTile(tile: Tile) {

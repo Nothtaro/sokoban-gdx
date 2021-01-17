@@ -6,14 +6,15 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.nothtaro.sokoban.entity.EntityType
-import io.github.nothtaro.sokoban.stage.StageRenderer
+import io.github.nothtaro.sokoban.stage.StageManager
+import io.github.nothtaro.sokoban.state.Direction
 import io.github.nothtaro.sokoban.state.GameState
 import io.github.nothtaro.sokoban.ui.FontRenderer
 import io.github.nothtaro.sokoban.util.Point
 import io.github.nothtaro.sokoban.util.TexturePreloader
 
 class Sokoban : ApplicationAdapter() {
-    private var stageRenderer = StageRenderer()
+    private var stageRenderer = StageManager()
     private var fontRenderer = FontRenderer()
     private lateinit var camera: OrthographicCamera
     private var gameState = GameState.MAIN
@@ -42,27 +43,29 @@ class Sokoban : ApplicationAdapter() {
         }
 
         if(gameState == GameState.GAME) {
-            fontRenderer.render("0-0", Point(0,0))
-            fontRenderer.render("LEVEL", Point(0,20))
-            fontRenderer.render(steps.toString(), Point(0,40))
-            fontRenderer.render("STEPS", Point(0,60))
-            fontRenderer.render(Gdx.graphics.framesPerSecond.toString(), Point(0,80))
+            fontRenderer.render("LEVEL.${stageRenderer.stage.getStageName()}", Point(0,0))
+            fontRenderer.render("STEPS.$steps", Point(0,20))
+            fontRenderer.render("FPS.${Gdx.graphics.framesPerSecond}", Point(0,80))
             stageRenderer.render(camera)
 
             when {
                 Gdx.input.isKeyJustPressed(Input.Keys.W) -> {
+                    stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.NORTH
                     stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(0, 1))
                     steps++
                 }
                 Gdx.input.isKeyJustPressed(Input.Keys.A) -> {
+                    stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.WEST
                     stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(-1, 0))
                     steps++
                 }
                 Gdx.input.isKeyJustPressed(Input.Keys.S) -> {
+                    stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.SOUTH
                     stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(0, -1))
                     steps++
                 }
                 Gdx.input.isKeyJustPressed(Input.Keys.D) -> {
+                    stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.EAST
                     stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(1, 0))
                     steps++
                 }

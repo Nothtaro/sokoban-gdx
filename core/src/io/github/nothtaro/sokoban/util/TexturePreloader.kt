@@ -9,19 +9,22 @@ object TexturePreloader {
     private lateinit var atlas:TextureAtlas
 
     fun initialize() {
-        atlas = TextureAtlas(Gdx.files.internal("blockAtlas.atlas"))
+        atlas = TextureAtlas(Gdx.files.internal("sprites/tile/TileAtlas.atlas"))
     }
 
     fun loadTile(tileType: TileType):TextureRegion {
         return when(tileType) {
             TileType.BOX -> {
-                atlas.findRegion("atlas0002")
+                atlas.findRegion("box")
             }
             TileType.WALL -> {
-                atlas.findRegion("atlas0000")
+                atlas.findRegion("wallTop")
+            }
+            TileType.WALLBOTTOM -> {
+                atlas.findRegion("wallBottom")
             }
             TileType.FLOOR -> {
-                atlas.findRegion("atlas0001")
+                atlas.findRegion("floor")
             }
         }
     }

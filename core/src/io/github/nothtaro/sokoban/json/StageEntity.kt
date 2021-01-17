@@ -1,3 +1,3 @@
 package io.github.nothtaro.sokoban.json
 
-data class StageEntity(val level: String, val field: Array<Array<Int>>)
+data class StageEntity(val levelName: String, val field: Array<Array<Int>>)

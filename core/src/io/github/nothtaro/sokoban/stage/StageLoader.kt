@@ -22,22 +22,22 @@ class StageLoader {
         stages = jsonMapper.readValue<StagesEntity>(Gdx.files.internal("levels/levels.json").reader()).stages
     }
 
-    fun load(level: String): Stage {
-        val temp = Stage(level)
+    fun load(level: Int): Stage {
         elapsed = System.currentTimeMillis()
         println("ロード中")
-        stages.forEach {
-            if(it.level == temp.getStageLevel()) {
-                for (x in 0 until tileCount) {
-                    for (y in 0 until tileCount) {
-                        if(it.field[y][x] < 3) {
-                            temp.entityManager.addEntity(EntityType.getFromId(it.field[y][x])!!, Point(x,y))
-                        }
-                        temp.addTile(Tile(TileType.getFromId(1)!!, Point((tileSize * x),(tileSize * y))))
-                    }
+
+        val stage = stages[level]
+        val temp = Stage(stage.levelName)
+
+        for (x in 0 until tileCount) {
+            for (y in 0 until tileCount) {
+                if(stage.field[y][x] < 4) {
+                    temp.entityManager.addEntity(EntityType.getFromId(stage.field[y][x])!!, Point(x,y))
                 }
+                temp.addTile(Tile(TileType.FLOOR, Point((tileSize * x),(tileSize * y))))
             }
         }
+
         print("ロード完了 経過時間 ${System.currentTimeMillis() - elapsed}ms")
         return temp
     }

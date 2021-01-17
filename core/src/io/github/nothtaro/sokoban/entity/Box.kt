@@ -3,10 +3,12 @@ package io.github.nothtaro.sokoban.entity
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.TexturePreloader
 import io.github.nothtaro.sokoban.stage.tile.TileType
+import io.github.nothtaro.sokoban.state.Direction
 import io.github.nothtaro.sokoban.util.Point
 
 class Box(override var position: Point, override var textureSize: Int) : Entity {
     private var easeX:Float = (textureSize * position.x).toFloat(); private var easeY:Float = (textureSize * position.y).toFloat()
+    override var direction: Direction = Direction.NORTH
 
     override fun getEntityType() : EntityType {
         return EntityType.BOX
