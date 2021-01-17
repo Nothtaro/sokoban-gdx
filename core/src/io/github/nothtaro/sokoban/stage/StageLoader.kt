@@ -14,6 +14,7 @@ class StageLoader {
     private var jsonMapper = jacksonObjectMapper()
     private val tileCount = 8
     private val tileSize = 64
+    var currentLevel = 0
 
     private lateinit var stages: Array<StageEntity>
     private var elapsed = 0L
@@ -23,6 +24,7 @@ class StageLoader {
     }
 
     fun load(level: Int): Stage {
+        currentLevel = level
         elapsed = System.currentTimeMillis()
         println("ロード中")
 
@@ -31,10 +33,16 @@ class StageLoader {
 
         for (x in 0 until tileCount) {
             for (y in 0 until tileCount) {
-                if(stage.field[y][x] < 4) {
-                    temp.entityManager.addEntity(EntityType.getFromId(stage.field[y][x])!!, Point(x,y))
+                if(stage.field[7-y][x] < 4) {
+                    temp.entityManager.addEntity(EntityType.getFromId(stage.field[7-y][x])!!, Point(x,y))
                 }
+
                 temp.addTile(Tile(TileType.FLOOR, Point((tileSize * x),(tileSize * y))))
+
+                if(stage.field[7-y][x] == 5) {
+                    temp.addTile(Tile(TileType.GOAL, Point((tileSize * x),(tileSize * y))))
+                    temp.setGoal(Point(x,y))
+                }
             }
         }
 

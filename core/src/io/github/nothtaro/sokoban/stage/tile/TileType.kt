@@ -4,7 +4,8 @@ enum class TileType(val id:Int) {
     WALL(0),
     WALLBOTTOM(1),
     FLOOR(2),
-    BOX(3);
+    BOX(3),
+    GOAL(4);
 
     companion object {
         fun getFromId(id:Int): TileType? {

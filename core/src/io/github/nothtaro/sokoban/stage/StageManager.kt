@@ -14,6 +14,9 @@ class StageManager {
 
     fun render(camera: OrthographicCamera) {
         stage.render(camera)
+        if(stage.isBoxAtGoal()) {
+            stage = stageLoader.load(stageLoader.currentLevel + 1)
+        }
     }
 
     fun dispose() {

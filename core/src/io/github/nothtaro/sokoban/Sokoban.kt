@@ -37,6 +37,7 @@ class Sokoban : ApplicationAdapter() {
 
         if(gameState == GameState.MAIN) {
             fontRenderer.render("SOKOBAN", Point(0,0))
+            fontRenderer.render("PRESS.SPACE.TO.BEGIN", Point(0,20))
             if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
                 gameState = GameState.GAME
             }
@@ -48,26 +49,28 @@ class Sokoban : ApplicationAdapter() {
             fontRenderer.render("FPS.${Gdx.graphics.framesPerSecond}", Point(0,80))
             stageRenderer.render(camera)
 
-            when {
-                Gdx.input.isKeyJustPressed(Input.Keys.W) -> {
-                    stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.NORTH
-                    stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(0, 1))
-                    steps++
-                }
-                Gdx.input.isKeyJustPressed(Input.Keys.A) -> {
-                    stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.WEST
-                    stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(-1, 0))
-                    steps++
-                }
-                Gdx.input.isKeyJustPressed(Input.Keys.S) -> {
-                    stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.SOUTH
-                    stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(0, -1))
-                    steps++
-                }
-                Gdx.input.isKeyJustPressed(Input.Keys.D) -> {
-                    stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.EAST
-                    stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(1, 0))
-                    steps++
+            if(stageRenderer.stage.entityManager.getPlayerEntity() != null) {
+                when {
+                    Gdx.input.isKeyJustPressed(Input.Keys.W) -> {
+                        stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.NORTH
+                        stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(0, 1))
+                        steps++
+                    }
+                    Gdx.input.isKeyJustPressed(Input.Keys.A) -> {
+                        stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.WEST
+                        stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(-1, 0))
+                        steps++
+                    }
+                    Gdx.input.isKeyJustPressed(Input.Keys.S) -> {
+                        stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.SOUTH
+                        stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(0, -1))
+                        steps++
+                    }
+                    Gdx.input.isKeyJustPressed(Input.Keys.D) -> {
+                        stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.EAST
+                        stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(1, 0))
+                        steps++
+                    }
                 }
             }
         }

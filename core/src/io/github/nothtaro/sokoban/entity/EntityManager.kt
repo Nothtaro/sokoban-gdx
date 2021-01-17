@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.util.Point
 
 class EntityManager {
-    private var entities = arrayListOf<Entity>()
+    var entities = arrayListOf<Entity>()
     private val textureSize = 64
     private var collideAt: Entity? = null
 

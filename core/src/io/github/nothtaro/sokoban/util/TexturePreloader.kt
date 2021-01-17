@@ -1,6 +1,7 @@
 package io.github.nothtaro.sokoban.util
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import io.github.nothtaro.sokoban.stage.tile.TileType
@@ -25,6 +26,9 @@ object TexturePreloader {
             }
             TileType.FLOOR -> {
                 atlas.findRegion("floor")
+            }
+            TileType.GOAL -> {
+                atlas.findRegion("goal")
             }
         }
     }

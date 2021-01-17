@@ -13,21 +13,28 @@ box
   index: -1
 floor
   rotate: false
-  xy: 56, 2
+  xy: 74, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-wallBottom
+goal
   rotate: false
   xy: 20, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-wallTop
+wallBottom
   rotate: false
   xy: 38, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+wallTop
+  rotate: false
+  xy: 56, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
