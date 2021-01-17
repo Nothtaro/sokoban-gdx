@@ -28,7 +28,7 @@ class StageLoader {
         elapsed = System.currentTimeMillis()
         println("ロード中")
 
-        val stage = stages[level]
+        val stage = stages[6]
         val temp = Stage(stage.levelName)
 
         for (x in 0 until tileCount) {
