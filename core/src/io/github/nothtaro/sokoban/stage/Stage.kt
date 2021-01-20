@@ -7,44 +7,24 @@ import io.github.nothtaro.sokoban.entity.EntityManager
 import io.github.nothtaro.sokoban.enums.EntityType
 import io.github.nothtaro.sokoban.util.Point
 
-class Stage(private val stageName:String) {
-    private val tiles = arrayListOf<Tile>()
+class Stage(val name:String) {
     private val spriteBatch = SpriteBatch()
     val entityManager = EntityManager()
-    lateinit var goalPosition:Point
+    val tiles = arrayListOf<Tile>()
+    var goalPosition:Point = Point(0,0)
 
-    fun getStageName(): String {
-        return this.stageName
-    }
-
-    fun addTile(tile: Tile) {
-        this.tiles.add(tile)
-    }
-
-    fun setGoal(position: Point) {
-        this.goalPosition = position
-    }
-
-    fun isBoxAtGoal(): Boolean {
-        /*entityManager.entities.forEach {
-            if(it.getEntityType() == EntityType.BOX && it.position == goalPosition) {
-                return true
-            }
-        }*/
-        return false
-    }
+    fun isBoxAtGoal(): Boolean = entityManager.entities.find { (it.getEntityType() == EntityType.BOX && it.position == goalPosition) } != null
 
     fun render(camera: OrthographicCamera) {
         spriteBatch.projectionMatrix = camera.combined
         spriteBatch.begin()
-        tiles.forEach {
-            spriteBatch.draw(TextureInitializer.load(it.tileType),it.position.x.toFloat(), it.position.y.toFloat(), 64f,64f)
-        }
+        tiles.forEach { spriteBatch.draw(TextureInitializer.load(it.tileType),it.position.x.toFloat() * 64, it.position.y.toFloat() * 64, 64f,64f) }
         entityManager.render(spriteBatch)
         spriteBatch.end()
     }
 
     fun dispose() {
         spriteBatch.dispose()
+        entityManager.dispose()
     }
 }

@@ -1,15 +1,15 @@
 package io.github.nothtaro.sokoban.enums
 
-enum class TileType(val id:Int) {
-    VOID(666),
-    FLOOR(0),
-    WALL(1),
-    WALLBOTTOM(2),
-    GOAL(3);
+enum class TileType(val id:Int, val collidable:Boolean) {
+    VOID(666,true),
+    FLOOR(0,false),
+    WALL(1,true),
+    WALLBOTTOM(2,true),
+    GOAL(3,true);
 
     companion object {
         fun fromID(id:Int): TileType? {
-            return TileType.values().find { it.id == id }
+            return values().find { it.id == id }
         }
     }
 }

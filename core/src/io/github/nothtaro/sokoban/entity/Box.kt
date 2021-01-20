@@ -3,8 +3,7 @@ package io.github.nothtaro.sokoban.entity
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.enums.EntityType
 import io.github.nothtaro.sokoban.util.TextureInitializer
-import io.github.nothtaro.sokoban.enums.TileType
-import io.github.nothtaro.sokoban.state.DirectionState
+import io.github.nothtaro.sokoban.enums.DirectionState
 import io.github.nothtaro.sokoban.util.Point
 
 class Box(override var position: Point, override var textureSize: Int) : Entity {

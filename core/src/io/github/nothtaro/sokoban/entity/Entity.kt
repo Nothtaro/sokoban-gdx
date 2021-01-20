@@ -2,7 +2,7 @@ package io.github.nothtaro.sokoban.entity
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import io.github.nothtaro.sokoban.enums.EntityType
-import io.github.nothtaro.sokoban.state.DirectionState
+import io.github.nothtaro.sokoban.enums.DirectionState
 import io.github.nothtaro.sokoban.util.Point
 
 interface Entity {
@@ -13,6 +13,8 @@ interface Entity {
     fun translate(x:Int, y:Int) {
         this.position.x += x; this.position.y += y
     }
+
+    fun isCollidable() = true
 
     fun getEntityType() : EntityType
 

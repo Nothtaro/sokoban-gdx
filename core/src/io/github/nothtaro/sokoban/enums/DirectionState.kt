@@ -1,4 +1,4 @@
-package io.github.nothtaro.sokoban.state
+package io.github.nothtaro.sokoban.enums
 
 enum class DirectionState {
     NORTH,
