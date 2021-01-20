@@ -2,12 +2,10 @@ package io.github.nothtaro.sokoban.stage
 
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import io.github.nothtaro.sokoban.util.TexturePreloader
+import io.github.nothtaro.sokoban.util.TextureInitializer
 import io.github.nothtaro.sokoban.entity.EntityManager
-import io.github.nothtaro.sokoban.entity.EntityType
-import io.github.nothtaro.sokoban.stage.tile.Tile
+import io.github.nothtaro.sokoban.enums.EntityType
 import io.github.nothtaro.sokoban.util.Point
-import java.text.FieldPosition
 
 class Stage(private val stageName:String) {
     private val tiles = arrayListOf<Tile>()
@@ -28,11 +26,11 @@ class Stage(private val stageName:String) {
     }
 
     fun isBoxAtGoal(): Boolean {
-        entityManager.entities.forEach {
+        /*entityManager.entities.forEach {
             if(it.getEntityType() == EntityType.BOX && it.position == goalPosition) {
                 return true
             }
-        }
+        }*/
         return false
     }
 
@@ -40,7 +38,7 @@ class Stage(private val stageName:String) {
         spriteBatch.projectionMatrix = camera.combined
         spriteBatch.begin()
         tiles.forEach {
-            spriteBatch.draw(TexturePreloader.loadTile(it.tileType),it.position.x.toFloat(), it.position.y.toFloat(), 64f,64f)
+            spriteBatch.draw(TextureInitializer.load(it.tileType),it.position.x.toFloat(), it.position.y.toFloat(), 64f,64f)
         }
         entityManager.render(spriteBatch)
         spriteBatch.end()

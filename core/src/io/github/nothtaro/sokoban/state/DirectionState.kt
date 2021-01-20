@@ -1,6 +1,6 @@
 package io.github.nothtaro.sokoban.state
 
-enum class Direction {
+enum class DirectionState {
     NORTH,
     EAST,
     WEST,

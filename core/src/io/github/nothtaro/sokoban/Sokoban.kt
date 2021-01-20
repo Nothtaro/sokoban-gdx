@@ -5,13 +5,13 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
-import io.github.nothtaro.sokoban.entity.EntityType
+import io.github.nothtaro.sokoban.enums.EntityType
 import io.github.nothtaro.sokoban.stage.StageManager
-import io.github.nothtaro.sokoban.state.Direction
+import io.github.nothtaro.sokoban.state.DirectionState
 import io.github.nothtaro.sokoban.state.GameState
 import io.github.nothtaro.sokoban.ui.FontRenderer
 import io.github.nothtaro.sokoban.util.Point
-import io.github.nothtaro.sokoban.util.TexturePreloader
+import io.github.nothtaro.sokoban.util.TextureInitializer
 
 class Sokoban : ApplicationAdapter() {
     private var stageRenderer = StageManager()
@@ -23,7 +23,7 @@ class Sokoban : ApplicationAdapter() {
     private var steps = 0
 
     override fun create() {
-        TexturePreloader.initialize()
+        TextureInitializer.initialize()
         camera = OrthographicCamera()
         camera.setToOrtho(false)
         camera.translate(-((Gdx.graphics.width - ab) / 2).toFloat(),-((Gdx.graphics.height - ab) / 2).toFloat())
@@ -54,22 +54,22 @@ class Sokoban : ApplicationAdapter() {
             if(stageRenderer.stage.entityManager.getPlayerEntity() != null) {
                 when {
                     Gdx.input.isKeyJustPressed(Input.Keys.W) -> {
-                        stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.NORTH
+                        stageRenderer.stage.entityManager.getPlayerEntity()!!.directionState = DirectionState.NORTH
                         stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(0, 1))
                         steps++
                     }
                     Gdx.input.isKeyJustPressed(Input.Keys.A) -> {
-                        stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.WEST
+                        stageRenderer.stage.entityManager.getPlayerEntity()!!.directionState = DirectionState.WEST
                         stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(-1, 0))
                         steps++
                     }
                     Gdx.input.isKeyJustPressed(Input.Keys.S) -> {
-                        stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.SOUTH
+                        stageRenderer.stage.entityManager.getPlayerEntity()!!.directionState = DirectionState.SOUTH
                         stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(0, -1))
                         steps++
                     }
                     Gdx.input.isKeyJustPressed(Input.Keys.D) -> {
-                        stageRenderer.stage.entityManager.getPlayerEntity()!!.direction = Direction.EAST
+                        stageRenderer.stage.entityManager.getPlayerEntity()!!.directionState = DirectionState.EAST
                         stageRenderer.stage.entityManager.translate(EntityType.PLAYER, Point(1, 0))
                         steps++
                     }
@@ -80,7 +80,7 @@ class Sokoban : ApplicationAdapter() {
     }
 
     override fun dispose() {
-        TexturePreloader.dispose()
+        TextureInitializer.dispose()
         stageRenderer.dispose()
         fontRenderer.dispose()
     }

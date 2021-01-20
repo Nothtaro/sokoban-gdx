@@ -1,37 +1,37 @@
 package io.github.nothtaro.sokoban.entity
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
-import io.github.nothtaro.sokoban.state.Direction
+import io.github.nothtaro.sokoban.enums.EntityType
+import io.github.nothtaro.sokoban.state.DirectionState
 import io.github.nothtaro.sokoban.util.Point
 
 class Player(override var position: Point, override var textureSize: Int) : Entity {
     private val playerAtlas = TextureAtlas(Gdx.files.internal("sprites/player/PlayerAtlas.atlas"))
     private var playerTexture = playerAtlas.findRegion("rightFront")
     private var easeX:Float = (textureSize * position.x).toFloat(); private var easeY:Float = (textureSize * position.y).toFloat()
-    override var direction: Direction = Direction.NORTH
+    override var directionState: DirectionState = DirectionState.NORTH
 
     override fun getEntityType() : EntityType {
         return EntityType.PLAYER
     }
 
     private fun getSprite() : TextureAtlas.AtlasRegion {
-        return when(direction) {
-            Direction.NORTH -> {
+        return when(directionState) {
+            DirectionState.NORTH -> {
                 playerAtlas.findRegion("up")
             }
 
-            Direction.EAST -> {
+            DirectionState.EAST -> {
                 playerAtlas.findRegion("right")
             }
 
-            Direction.WEST -> {
+            DirectionState.WEST -> {
                 playerAtlas.findRegion("left")
             }
 
-            Direction.SOUTH -> {
+            DirectionState.SOUTH -> {
                 playerAtlas.findRegion("down")
             }
         }
