@@ -14,20 +14,19 @@ import io.github.nothtaro.sokoban.util.Point
 import io.github.nothtaro.sokoban.util.TextureInitializer
 
 class Sokoban : ApplicationAdapter() {
-    private var stageRenderer = StageManager()
+    private var stageManager = StageManager()
     private var fontRenderer = FontRenderer()
     private lateinit var camera: OrthographicCamera
     private var gameState = GameState.MAIN
-    private var count = 0f
-    private var ab = 64 * 8
+    private var mapSize = 64 * 8
     private var steps = 0
 
     override fun create() {
         TextureInitializer.initialize()
         camera = OrthographicCamera()
         camera.setToOrtho(false)
-        camera.translate(-((Gdx.graphics.width - ab) / 2).toFloat(),-((Gdx.graphics.height - ab) / 2).toFloat())
-        stageRenderer.initialize()
+        camera.translate(-((Gdx.graphics.width - mapSize) / 2).toFloat(),-((Gdx.graphics.height - mapSize) / 2).toFloat())
+        stageManager.initialize()
         fontRenderer.initialize()
     }
 
@@ -37,51 +36,39 @@ class Sokoban : ApplicationAdapter() {
         camera.update()
 
         if(gameState == GameState.MAIN) {
-            //fontRenderer.render("SOKOBAN", Point(0,0))
-            //fontRenderer.render("PRESS.SPACE.TO.BEGIN", Point(0,20))
             if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
                 gameState = GameState.GAME
             }
         }
 
         if(gameState == GameState.GAME) {
-            //fontRenderer.render("LEVEL.${stageRenderer.stage.name}", Point(0,0))
-            //fontRenderer.render("STEPS.$steps", Point(0,20))
-            //fontRenderer.render("TIME.${(count.toInt() / 60)}M${count.toInt() % 60}S", Point(0, 40))
-            //fontRenderer.render("FPS.${Gdx.graphics.framesPerSecond}", Point(0,80))
-            stageRenderer.render(camera)
-
-            if(stageRenderer.stage.entityManager.getPlayerEntity() != null) {
+            stageManager.render(camera)
+            if(stageManager.getPlayer() != null) {
                 when {
                     Gdx.input.isKeyJustPressed(Input.Keys.W) -> {
-                        //stageRenderer.stage.entityManager.getPlayerEntity()!!.directionState = DirectionState.NORTH
-                        stageRenderer.translate(EntityType.PLAYER, Point(0, 1))
+                        stageManager.translate(EntityType.PLAYER, DirectionState.NORTH)
                         steps++
                     }
                     Gdx.input.isKeyJustPressed(Input.Keys.A) -> {
-                        //stageRenderer.stage.entityManager.getPlayerEntity()!!.directionState = DirectionState.WEST
-                        stageRenderer.translate(EntityType.PLAYER, Point(-1, 0))
+                        stageManager.translate(EntityType.PLAYER, DirectionState.WEST)
                         steps++
                     }
                     Gdx.input.isKeyJustPressed(Input.Keys.S) -> {
-                        //stageRenderer.stage.entityManager.getPlayerEntity()!!.directionState = DirectionState.SOUTH
-                        stageRenderer.translate(EntityType.PLAYER, Point(0, -1))
+                        stageManager.translate(EntityType.PLAYER, DirectionState.SOUTH)
                         steps++
                     }
                     Gdx.input.isKeyJustPressed(Input.Keys.D) -> {
-                        //stageRenderer.stage.entityManager.getPlayerEntity()!!.directionState = DirectionState.EAST
-                        stageRenderer.translate(EntityType.PLAYER, Point(1, 0))
+                        stageManager.translate(EntityType.PLAYER, DirectionState.EAST)
                         steps++
                     }
                 }
             }
-            //count += Gdx.graphics.deltaTime
         }
     }
 
     override fun dispose() {
         TextureInitializer.dispose()
-        stageRenderer.dispose()
+        stageManager.dispose()
         fontRenderer.dispose()
     }
 }

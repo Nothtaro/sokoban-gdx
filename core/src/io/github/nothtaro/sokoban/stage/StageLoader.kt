@@ -12,11 +12,10 @@ import io.github.nothtaro.sokoban.enums.TileType
 import io.github.nothtaro.sokoban.util.Point
 
 class StageLoader {
+    private lateinit var stages: Array<StageEntity>
     private var jsonMapper = jacksonObjectMapper()
     private val tileCount = 8
     private val textureSize = 64
-
-    private lateinit var stages: Array<StageEntity>
     private var elapsed = 0L
 
 

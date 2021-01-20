@@ -15,17 +15,6 @@ class EntityManager {
         }
     }
 
-    fun getPlayerEntity(): Entity?{
-        entities.forEach {
-            if(it.getEntityType() == EntityType.PLAYER) {
-                return it as Player
-            }
-        }
-        return null
-    }
-
-    fun isIntersectAt(position:Point): Entity? = entities.find { (it.position == position && it.isCollidable()) }
-
     fun dispose() {
         entities.forEach {
             it.dispose()
