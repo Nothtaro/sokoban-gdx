@@ -19,6 +19,10 @@ class StageManager {
         }
     }
 
+    fun testCollide() {
+
+    }
+
     fun dispose() {
         stage.dispose()
     }

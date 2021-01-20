@@ -18,6 +18,7 @@ class Sokoban : ApplicationAdapter() {
     private var fontRenderer = FontRenderer()
     private lateinit var camera: OrthographicCamera
     private var gameState = GameState.MAIN
+    private var count = 0f
     private var ab = 64 * 8
     private var steps = 0
 
@@ -46,6 +47,7 @@ class Sokoban : ApplicationAdapter() {
         if(gameState == GameState.GAME) {
             fontRenderer.render("LEVEL.${stageRenderer.stage.getStageName()}", Point(0,0))
             fontRenderer.render("STEPS.$steps", Point(0,20))
+            fontRenderer.render("TIME.${(count.toInt() / 60)}M${count.toInt() % 60}S", Point(0, 40))
             fontRenderer.render("FPS.${Gdx.graphics.framesPerSecond}", Point(0,80))
             stageRenderer.render(camera)
 
@@ -73,6 +75,7 @@ class Sokoban : ApplicationAdapter() {
                     }
                 }
             }
+            count += Gdx.graphics.deltaTime
         }
     }
 

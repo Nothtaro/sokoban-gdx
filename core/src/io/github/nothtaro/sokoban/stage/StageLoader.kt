@@ -28,21 +28,25 @@ class StageLoader {
         elapsed = System.currentTimeMillis()
         println("ロード中")
 
-        val stage = stages[6]
+        val stage = stages[currentLevel]
         val temp = Stage(stage.levelName)
+
+        println(stages[0])
 
         for (x in 0 until tileCount) {
             for (y in 0 until tileCount) {
-                if(stage.field[7-y][x] < 4) {
-                    temp.entityManager.addEntity(EntityType.getFromId(stage.field[7-y][x])!!, Point(x,y))
+                if(stage.field[7-y][x] < 5) {
+                    temp.addTile(Tile(TileType.getFromId(stage.field[7-y][x])!!, Point((tileSize * x),(tileSize * y))))
                 }
-
-                temp.addTile(Tile(TileType.FLOOR, Point((tileSize * x),(tileSize * y))))
-
-                if(stage.field[7-y][x] == 5) {
-                    temp.addTile(Tile(TileType.GOAL, Point((tileSize * x),(tileSize * y))))
+                if(stage.field[7-y][x] == 4) {
                     temp.setGoal(Point(x,y))
                 }
+            }
+        }
+
+        stage.entity.forEach { entities ->
+            entities.position.forEach {
+                temp.entityManager.addEntity(entities.type, it)
             }
         }
 

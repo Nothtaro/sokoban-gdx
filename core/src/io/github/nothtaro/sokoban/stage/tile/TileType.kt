@@ -1,9 +1,10 @@
 package io.github.nothtaro.sokoban.stage.tile
 
 enum class TileType(val id:Int) {
-    WALL(0),
-    WALLBOTTOM(1),
-    FLOOR(2),
+    VOID(666),
+    WALL(1),
+    WALLBOTTOM(2),
+    FLOOR(0),
     BOX(3),
     GOAL(4);
 

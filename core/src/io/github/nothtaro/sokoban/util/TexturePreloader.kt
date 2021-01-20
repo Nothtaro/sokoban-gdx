@@ -30,6 +30,9 @@ object TexturePreloader {
             TileType.GOAL -> {
                 atlas.findRegion("goal")
             }
+            TileType.VOID -> {
+                atlas.findRegion("goal")
+            }
         }
     }
 
