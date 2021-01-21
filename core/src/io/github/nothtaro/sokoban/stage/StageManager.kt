@@ -22,7 +22,7 @@ class StageManager {
         stage.render(camera)
         if(stage.isBoxAtGoal()) {
             stage = stageLoader.load(1)
-            entityManager = stage.entityManager
+            //entityManager = stage.entityManager
         }
     }
 

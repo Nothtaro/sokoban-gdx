@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
+import com.badlogic.gdx.math.Vector3
 import io.github.nothtaro.sokoban.enums.EntityType
 import io.github.nothtaro.sokoban.stage.StageManager
 import io.github.nothtaro.sokoban.enums.DirectionState
@@ -17,15 +18,15 @@ class Sokoban : ApplicationAdapter() {
     private var stageManager = StageManager()
     private var fontRenderer = FontRenderer()
     private lateinit var camera: OrthographicCamera
-    private var gameState = GameState.MAIN
-    private var mapSize = 64 * 8
+    private var gameState = GameState.GAME
+    private var mapSize = 64 * 16
+    private var zoom = 1.5f
     private var steps = 0
 
     override fun create() {
         TextureInitializer.initialize()
         camera = OrthographicCamera()
         camera.setToOrtho(false)
-        camera.translate(-((Gdx.graphics.width - mapSize) / 2).toFloat(),-((Gdx.graphics.height - mapSize) / 2).toFloat())
         stageManager.initialize()
         fontRenderer.initialize()
     }
@@ -33,6 +34,7 @@ class Sokoban : ApplicationAdapter() {
     override fun render() {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
         Gdx.gl.glClearColor(0.10f,0.10f,0.10f,1f)
+        camera.translate((0.75f * ((mapSize / 2) - camera.position.x)),(0.75f * ((mapSize / 2) - camera.position.y)))
         camera.update()
 
         if(gameState == GameState.MAIN) {
@@ -61,8 +63,15 @@ class Sokoban : ApplicationAdapter() {
                         stageManager.translate(EntityType.PLAYER, DirectionState.EAST)
                         steps++
                     }
+                    Gdx.input.isKeyJustPressed(Input.Keys.O) -> {
+                        zoom -= 0.5f
+                    }
+                    Gdx.input.isKeyJustPressed(Input.Keys.L) -> {
+                        zoom += 0.5f
+                    }
                 }
             }
+            camera.zoom += (0.25f * ((zoom - camera.zoom)))
         }
     }
 

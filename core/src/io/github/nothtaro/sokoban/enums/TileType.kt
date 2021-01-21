@@ -5,7 +5,7 @@ enum class TileType(val id:Int, val collidable:Boolean) {
     FLOOR(0,false),
     WALL(1,true),
     WALLBOTTOM(2,true),
-    GOAL(3,true);
+    GOAL(3,false);
 
     companion object {
         fun fromID(id:Int): TileType? {
